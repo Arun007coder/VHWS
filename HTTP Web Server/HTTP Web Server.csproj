@@ -1,0 +1,281 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>HTTP_Web_Server</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="port.txt" />
+    <None Remove="Readme.md" />
+    <None Remove="Root\msg\400.htm" />
+    <None Remove="Root\msg\401-1.htm" />
+    <None Remove="Root\msg\401-2.htm" />
+    <None Remove="Root\msg\401-3.htm" />
+    <None Remove="Root\msg\401-4.htm" />
+    <None Remove="Root\msg\401-5.htm" />
+    <None Remove="Root\msg\401.htm" />
+    <None Remove="Root\msg\403-1.htm" />
+    <None Remove="Root\msg\403-10.htm" />
+    <None Remove="Root\msg\403-11.htm" />
+    <None Remove="Root\msg\403-12.htm" />
+    <None Remove="Root\msg\403-13.htm" />
+    <None Remove="Root\msg\403-14.htm" />
+    <None Remove="Root\msg\403-15.htm" />
+    <None Remove="Root\msg\403-16.htm" />
+    <None Remove="Root\msg\403-17.htm" />
+    <None Remove="Root\msg\403-18.htm" />
+    <None Remove="Root\msg\403-19.htm" />
+    <None Remove="Root\msg\403-2.htm" />
+    <None Remove="Root\msg\403-3.htm" />
+    <None Remove="Root\msg\403-4.htm" />
+    <None Remove="Root\msg\403-5.htm" />
+    <None Remove="Root\msg\403-6.htm" />
+    <None Remove="Root\msg\403-7.htm" />
+    <None Remove="Root\msg\403-8.htm" />
+    <None Remove="Root\msg\403-9.htm" />
+    <None Remove="Root\msg\403.htm" />
+    <None Remove="Root\msg\404-1.htm" />
+    <None Remove="Root\msg\404-11.htm" />
+    <None Remove="Root\msg\404-12.htm" />
+    <None Remove="Root\msg\404-14.htm" />
+    <None Remove="Root\msg\404-15.htm" />
+    <None Remove="Root\msg\404-2.htm" />
+    <None Remove="Root\msg\404-3.htm" />
+    <None Remove="Root\msg\404-4.htm" />
+    <None Remove="Root\msg\404-5.htm" />
+    <None Remove="Root\msg\404-6.htm" />
+    <None Remove="Root\msg\404-7.htm" />
+    <None Remove="Root\msg\404-8.htm" />
+    <None Remove="Root\msg\404-9.htm" />
+    <None Remove="Root\msg\404.htm" />
+    <None Remove="Root\msg\405.htm" />
+    <None Remove="Root\msg\406.htm" />
+    <None Remove="Root\msg\412.htm" />
+    <None Remove="Root\msg\413-1.htm" />
+    <None Remove="Root\msg\431.htm" />
+    <None Remove="Root\msg\500-100.asp" />
+    <None Remove="Root\msg\500-13.htm" />
+    <None Remove="Root\msg\500-14.htm" />
+    <None Remove="Root\msg\500-15.htm" />
+    <None Remove="Root\msg\500-16.htm" />
+    <None Remove="Root\msg\500-17.htm" />
+    <None Remove="Root\msg\500-18.htm" />
+    <None Remove="Root\msg\500-19.htm" />
+    <None Remove="Root\msg\500.htm" />
+    <None Remove="Root\msg\501.htm" />
+    <None Remove="Root\msg\502.htm" />
+    <None Remove="Root\web\clock2.css" />
+    <None Remove="Root\web\clock2.js" />
+    <None Remove="Root\web\favicon.ico" />
+    <None Remove="Root\web\index.html" />
+    <None Remove="Root\web\put your web file in here.txt" />
+    <None Remove="Root\web\web.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="port.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Readme.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\400.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\401-1.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\401-2.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\401-3.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\401-4.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\401-5.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\401.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-1.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-10.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-11.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-12.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-13.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-14.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-15.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-16.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-17.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-18.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-19.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-2.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-3.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-4.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-5.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-6.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-7.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-8.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403-9.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\403.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-1.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-11.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-12.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-14.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-15.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-2.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-3.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-4.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-5.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-6.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-7.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-8.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404-9.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\404.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\405.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\406.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\412.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\413-1.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\431.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\500-100.asp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\500-13.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\500-14.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\500-15.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\500-16.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\500-17.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\500-18.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\500-19.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\500.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\501.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\msg\502.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\web\clock2.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\web\clock2.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\web\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\web\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\web\put your web file in here.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Root\web\web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
