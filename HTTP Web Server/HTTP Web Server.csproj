@@ -66,12 +66,7 @@
     <None Remove="Root\msg\500.htm" />
     <None Remove="Root\msg\501.htm" />
     <None Remove="Root\msg\502.htm" />
-    <None Remove="Root\web\clock2.css" />
-    <None Remove="Root\web\clock2.js" />
-    <None Remove="Root\web\favicon.ico" />
-    <None Remove="Root\web\index.html" />
-    <None Remove="Root\web\put your web file in here.txt" />
-    <None Remove="Root\web\web.config" />
+    <None Remove="Root\web\Add your Website Files here.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -252,22 +247,7 @@
     <Content Include="Root\msg\502.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Root\web\clock2.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Root\web\clock2.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Root\web\favicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Root\web\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Root\web\put your web file in here.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Root\web\web.config">
+    <Content Include="Root\web\Add your Website Files here.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
