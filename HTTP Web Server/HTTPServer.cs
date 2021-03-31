@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
-using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
 
@@ -83,8 +80,6 @@ namespace HTTP_Web_Server
             Response resp = Response.From(req);
             resp.Post(client.GetStream());
 
-            
-
         }
 
         public void log(string _file, string _res)
@@ -96,11 +91,6 @@ namespace HTTP_Web_Server
                 sw.Close();
             }
         }
-
-        
-
-
-
 
     }
 }
