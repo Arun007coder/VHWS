@@ -118,6 +118,12 @@ namespace HTTP_Web_Server
 
             writer.WriteLine(string.Format("{0} {1}\r\nServer: {2}\r\nContent-Type: {3}\r\nAccept-Ranges: bytes\r\nContent-Length: {4}\r\n",
                 HTTPServer.VERSION, status, HTTPServer.NAME, mime, data.Length));
+            using (StreamWriter sw = File.CreateText("CLog.txt"))
+            {
+                sw.WriteLine(string.Format("{0} {1}\r\nServer: {2}\r\nContent-Type: {3}\r\nAccept-Ranges: bytes\r\nContent-Length: {4}\r\n",
+                HTTPServer.VERSION, status, HTTPServer.NAME, mime, data.Length));
+                sw.Close();
+            }
             writer.Flush();
             stream.Write(data, 0, data.Length);
 
