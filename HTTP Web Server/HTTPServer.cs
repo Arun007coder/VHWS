@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
+using System.Timers;
 using System.IO;
 using System.Diagnostics;
 
@@ -13,14 +14,34 @@ namespace HTTP_Web_Server
         public const string NAME = "C# web server v1.1";
         public const string MSG_DIR = "/Root/msg/";
         public const string WEB_DIR = "/Root/web/";
+        public const string LOG_DIR = "/Root/logs/";
 
         private int Port;
+        public static System.Timers.Timer timer;
         private bool isRunning = false;
-        public string Log;
-        public string FileName = "Log.txt";
+        public static string time;
+        public static string FileName = "Log.txt";
         public string msg;
 
         private TcpListener TL;
+
+
+        public static void SetTimer()
+        {
+            // Create a timer with a two second interval.
+            timer = new System.Timers.Timer(1000);
+            timer.Enabled = true;
+            // Hook up the Elapsed event for the timer. 
+            timer.Elapsed += TimedEvent;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+
+        public static void TimedEvent(object source, ElapsedEventArgs l)
+        {
+            string time = DateTime.Now.ToString("dd/MM/yyyy hh:mm.ss tt");
+            FileName = time + " Log.txt";
+        }
 
         public HTTPServer(int _port)
         {
@@ -67,10 +88,10 @@ namespace HTTP_Web_Server
             StreamReader reader = new StreamReader(client.GetStream());
 
             string msg = "";
-            while(reader.Peek() != -1)
+            while (reader.Peek() != -1)
             {
                 msg += reader.ReadLine() + "\n";
-                log(FileName, msg);
+                log(Environment.CurrentDirectory + LOG_DIR + FileName, msg);
             }
 
             Debug.WriteLine("$ Request: \n" + msg);
@@ -84,6 +105,12 @@ namespace HTTP_Web_Server
 
         public void log(string _file, string _res)
         {
+            string dir = Environment.CurrentDirectory + LOG_DIR;
+            // If directory does not exist, create it
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
             string Log = "$ Request : \n" + _res;
             using (StreamWriter sw = File.CreateText(_file))
             {
@@ -92,5 +119,6 @@ namespace HTTP_Web_Server
             }
         }
 
+        
     }
 }

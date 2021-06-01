@@ -1,15 +1,18 @@
 ﻿using System;
 using System.IO;
 
+
 namespace HTTP_Web_Server
 {
     class Program
     {
+        
         public int PT = 30;
         
 
-        static void Main(string[] args)
+         static void Main(string[] args)
         {
+            HTTPServer.SetTimer();
             int PT = 0;
             string[] lines = File.ReadAllLines("port.txt");
 

@@ -4,7 +4,31 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>HTTP_Web_Server</RootNamespace>
+    <Version>1.0.1</Version>
+    <Authors>Arun007coder</Authors>
+    <Company>Null</Company>
+    <Product>Web Server</Product>
+    <Description>A simple web server made using c#</Description>
+    <PackageReleaseNotes>*Logs have time of created in their name
+*Logs now have seprate folder</PackageReleaseNotes>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
+    <DocumentationFile>C:\Users\ADG Arun\source\repos\HTTP Web Server\HTTP Web Server\HTTP Web Server.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Users\ADG Arun\source\repos\HTTP Web Server\HTTP Web Server\HTTP Web Server.xml</DocumentationFile>
+    <OutputPath>H:\HTTP Web Server\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Root\NewFolder\**" />
+    <EmbeddedResource Remove="Root\NewFolder\**" />
+    <None Remove="Root\NewFolder\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="port.txt" />
@@ -256,6 +280,7 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Root\NewFolder1\" />
   </ItemGroup>
 
 </Project>
