@@ -11,14 +11,17 @@ namespace HTTP_Web_Server
     public class HTTPServer
     {
         public const string VERSION = "HTTP/1.1";
-        public const string NAME = "C# web server v2.0.0";
+        public const string NAME = "C# web server v2.0.1";
         public static string MSG_DIR;
         public static string WEB_DIR;
-        public static string LOG_DIR = "/Root/logs/";
+        public static string LOG_DIR;
         public static string DEF_WEB_DIR = Environment.CurrentDirectory + "/Root/web/";
         public static string DEF_MSG_DIR = Environment.CurrentDirectory + "/Root/msg/";
+        public static string DEF_LOG_DIR = Environment.CurrentDirectory + "/Root/logs/";
         public static string SET_WEB_DIR;
         public static string SET_MSG_DIR;
+        public static string SET_LOG_DIR;
+        public static bool Lbool;
 
         private int Port;
         public static System.Timers.Timer timer;
@@ -95,7 +98,10 @@ namespace HTTP_Web_Server
             while (reader.Peek() != -1)
             {
                 msg += reader.ReadLine() + "\n";
-                log(Environment.CurrentDirectory + LOG_DIR + FileName, msg);
+                if(Lbool = true)
+                {
+                    log(LOG_DIR + FileName, msg);
+                }
             }
 
             Debug.WriteLine("$ Request: \n" + msg);
@@ -109,7 +115,7 @@ namespace HTTP_Web_Server
 
         public void log(string _file, string _res)
         {
-            string dir = Environment.CurrentDirectory + LOG_DIR;
+            string dir = LOG_DIR;
             // If directory does not exist, create it
             if (!Directory.Exists(dir))
             {
