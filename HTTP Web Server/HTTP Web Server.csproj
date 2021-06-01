@@ -29,7 +29,7 @@ Web and MSG directory can be changed into a local directory from Settings.ini fi
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Users\ADG Arun\source\repos\HTTP Web Server\HTTP Web Server\HTTP Web Server.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
     <OutputPath>H:\HTTP Web Server\</OutputPath>
   </PropertyGroup>
 
