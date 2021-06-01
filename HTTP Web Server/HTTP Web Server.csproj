@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Root\NewFolder\**" />
+    <EmbeddedResource Remove="Root\NewFolder\**" />
+    <None Remove="Root\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="port.txt" />
     <None Remove="Readme.md" />
     <None Remove="Root\msg\400.htm" />
@@ -256,6 +262,7 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Root\NewFolder1\" />
   </ItemGroup>
 
 </Project>
