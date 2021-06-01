@@ -32,7 +32,8 @@ namespace HTTP_Web_Server
 
             if (request.Type == "GET")
             {
-                String file = Environment.CurrentDirectory + HTTPServer.WEB_DIR + request.URL;
+                String file = HTTPServer.WEB_DIR + request.URL;
+                Console.WriteLine(file);
                 FileInfo f = new FileInfo(file);
                 if (f.Exists && f.Extension.Contains("."))
                 {
@@ -76,7 +77,7 @@ namespace HTTP_Web_Server
 
         private static Response MakeNullRequest()
         {
-            string file = Environment.CurrentDirectory + HTTPServer.MSG_DIR + "400.htm";
+            string file = HTTPServer.MSG_DIR + "400.htm";
             FileInfo FI = new FileInfo(file);
             FileStream FS = FI.OpenRead();
             BinaryReader BR = new BinaryReader(FS);
@@ -88,7 +89,8 @@ namespace HTTP_Web_Server
 
         private static Response MakePageNotFound()
         {
-            string file = Environment.CurrentDirectory + HTTPServer.MSG_DIR + "404.htm";
+            string file = HTTPServer.MSG_DIR + "404.htm";
+            Console.WriteLine(file);
             FileInfo FI = new FileInfo(file);
             FileStream FS = FI.OpenRead();
             BinaryReader BR = new BinaryReader(FS);
@@ -100,7 +102,7 @@ namespace HTTP_Web_Server
 
         private static Response MakeMethodNotAllowed()
         {
-            string file = Environment.CurrentDirectory + HTTPServer.MSG_DIR + "405.htm";
+            string file = HTTPServer.MSG_DIR + "405.htm";
             FileInfo FI = new FileInfo(file);
             FileStream FS = FI.OpenRead();
             BinaryReader BR = new BinaryReader(FS);
@@ -113,19 +115,25 @@ namespace HTTP_Web_Server
         public void Post(NetworkStream stream)
         {
 
-
-            StreamWriter writer = new StreamWriter(stream);
-
-            writer.WriteLine(string.Format("{0} {1}\r\nServer: {2}\r\nContent-Type: {3}\r\nAccept-Ranges: bytes\r\nContent-Length: {4}\r\n",
-                HTTPServer.VERSION, status, HTTPServer.NAME, mime, data.Length));
-            using (StreamWriter sw = File.CreateText("CLog.txt"))
+            try 
             {
-                sw.WriteLine(string.Format("{0} {1}\r\nServer: {2}\r\nContent-Type: {3}\r\nAccept-Ranges: bytes\r\nContent-Length: {4}\r\n",
-                HTTPServer.VERSION, status, HTTPServer.NAME, mime, data.Length));
-                sw.Close();
+                StreamWriter writer = new StreamWriter(stream);
+
+                writer.WriteLine(string.Format("{0} {1}\r\nServer: {2}\r\nContent-Type: {3}\r\nAccept-Ranges: bytes\r\nContent-Length: {4}\r\n",
+                    HTTPServer.VERSION, status, HTTPServer.NAME, mime, data.Length));
+                using (StreamWriter sw = File.CreateText("CLog.txt"))
+                {
+                    sw.WriteLine(string.Format("{0} {1}\r\nServer: {2}\r\nContent-Type: {3}\r\nAccept-Ranges: bytes\r\nContent-Length: {4}\r\n",
+                    HTTPServer.VERSION, status, HTTPServer.NAME, mime, data.Length));
+                    sw.Close();
+                }
+                writer.Flush();
+                stream.Write(data, 0, data.Length);
             }
-            writer.Flush();
-            stream.Write(data, 0, data.Length);
+            catch (IOException e)
+            {
+                Console.WriteLine("Connection was interuppted by host");
+            }
 
         }
 

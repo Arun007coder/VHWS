@@ -11,10 +11,14 @@ namespace HTTP_Web_Server
     public class HTTPServer
     {
         public const string VERSION = "HTTP/1.1";
-        public const string NAME = "C# web server v1.1";
-        public const string MSG_DIR = "/Root/msg/";
-        public const string WEB_DIR = "/Root/web/";
-        public const string LOG_DIR = "/Root/logs/";
+        public const string NAME = "C# web server v1.0.2";
+        public static string MSG_DIR;
+        public static string WEB_DIR;
+        public static string LOG_DIR = "/Root/logs/";
+        public static string DEF_WEB_DIR = Environment.CurrentDirectory + "/Root/web/";
+        public static string DEF_MSG_DIR = Environment.CurrentDirectory + "/Root/msg/";
+        public static string SET_WEB_DIR;
+        public static string SET_MSG_DIR;
 
         private int Port;
         public static System.Timers.Timer timer;
