@@ -40,7 +40,6 @@ Now you can specify the directory in which the logs save</PackageReleaseNotes>
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Readme.md" />
     <None Remove="Root\msg\400.htm" />
     <None Remove="Root\msg\404.htm" />
     <None Remove="Root\msg\405.htm" />
@@ -48,9 +47,6 @@ Now you can specify the directory in which the logs save</PackageReleaseNotes>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Readme.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Root\msg\400.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
