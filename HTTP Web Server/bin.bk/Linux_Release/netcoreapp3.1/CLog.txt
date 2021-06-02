@@ -1,6 +1,0 @@
-HTTP/1.1 400 Bad Request
-Server: C# web server v1.0.2
-Content-Type: text/html
-Accept-Ranges: bytes
-Content-Length: 1902
-

@@ -98,7 +98,7 @@ namespace HTTP_Web_Server
             while (reader.Peek() != -1)
             {
                 msg += reader.ReadLine() + "\n";
-                if(Lbool = true)
+                if(Lbool == true)
                 {
                     log(LOG_DIR + FileName, msg);
                 }

@@ -1,1 +1,0 @@
-﻿The main html file name has to be :  default.html, default.htm, index.htm, index.html, Index.html, Index.htm, Default.htm, Default.html.
