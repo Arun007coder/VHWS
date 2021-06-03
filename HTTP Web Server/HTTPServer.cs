@@ -5,13 +5,14 @@ using System.Threading;
 using System.Timers;
 using System.IO;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace HTTP_Web_Server
 {
     public class HTTPServer
     {
         public const string VERSION = "HTTP/1.1";
-        public const string NAME = "C# web server v2.0.1";
+        public const string NAME = "C# web server v2.0.2";
         public static string MSG_DIR;
         public static string WEB_DIR;
         public static string LOG_DIR;
@@ -27,8 +28,10 @@ namespace HTTP_Web_Server
         public static System.Timers.Timer timer;
         private bool isRunning = false;
         public static string time;
-        public static string FileName = "Log.txt";
+        public static string FileName;
         public string msg;
+        public static string nme = " Log.txt";
+        public static bool isHacking = false;
 
         private TcpListener TL;
 
@@ -47,7 +50,7 @@ namespace HTTP_Web_Server
         public static void TimedEvent(object source, ElapsedEventArgs l)
         {
             string time = DateTime.Now.ToString("dd/MM/yyyy hh:mm.ss tt");
-            FileName = time + " Log.txt";
+            FileName = time + nme;
         }
 
         public HTTPServer(int _port)
@@ -74,15 +77,60 @@ namespace HTTP_Web_Server
 
             while (isRunning == true)
             {
-                Console.WriteLine("$ Waiting for Connection...");
 
-                TcpClient client = TL.AcceptTcpClient();
 
-                Console.WriteLine("$ Client connected!");
 
-                HandleClient(client);
+                try
+                {
 
-                client.Close();
+                    if (!isHacking)
+                    {
+                        Console.WriteLine("Waiting for connection ...");
+
+                        TcpClient client = TL.AcceptTcpClient();
+
+                        Console.WriteLine("Client connected!");
+
+                        HandleClient(client);
+
+                        client.Close();
+                    }
+                    else
+                    {
+                        Task.Factory.StartNew(() =>
+                        {
+                            Thread.Sleep(30000);
+
+                            isHacking = false;
+
+                            Console.WriteLine("Waiting for connection ...");
+
+                            TcpClient client = TL.AcceptTcpClient();
+
+                            Console.WriteLine("Client connected!");
+
+                            HandleClient(client);
+
+                            client.Close();
+                        });
+                    }
+
+                    
+                }
+                catch(IndexOutOfRangeException e)
+                {
+                    isHacking = true;
+                    nme = "Hacklog.txt";
+                    log(LOG_DIR + FileName, e + "Someone is trying to hack the server or trying to use nikto");
+                    Console.WriteLine("Someone is trying to hack the server or trying to use nikto");
+                    Task.Factory.StartNew(() =>
+                    {
+                        log(LOG_DIR + FileName, e + "Someone is trying to hack the server or trying to use nikto");
+                        System.Threading.Thread.Sleep(8000);
+                        //stop();
+                    });
+                }
+                
             }
 
             isRunning = false;

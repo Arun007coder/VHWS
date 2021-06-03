@@ -75,6 +75,18 @@ namespace HTTP_Web_Server
             return new Response("200 ok", "text/html", d);
         }
 
+        public static Response MakeLOL()
+        {
+            string file = HTTPServer.MSG_DIR + "400.htm";
+            FileInfo FI = new FileInfo(file);
+            FileStream FS = FI.OpenRead();
+            BinaryReader BR = new BinaryReader(FS);
+            Byte[] d = new Byte[FS.Length];
+            BR.Read(d, 0, d.Length);
+            FS.Close();
+            return new Response("Hacking", "text/html", d);
+        }
+
         private static Response MakeNullRequest()
         {
             string file = HTTPServer.MSG_DIR + "400.htm";
