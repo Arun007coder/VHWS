@@ -1,0 +1,2 @@
+﻿S001 : {Frequency : Rommon} This error occurs when the connection interupts in middle of a transmission. EX:- when changing the tabs.[Handled]
+S002 : {Frequency : Rare} This error occurs when the request is overflowing from the string array.This type of requests are used by nikto.This error can stopthe server for security issues[Handled]

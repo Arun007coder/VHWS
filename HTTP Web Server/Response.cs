@@ -144,7 +144,7 @@ namespace HTTP_Web_Server
             }
             catch (IOException e)
             {
-                Console.WriteLine("Connection was interuppted by host");
+                Console.WriteLine("S001 :Connection was interuppted by host");
             }
 
         }

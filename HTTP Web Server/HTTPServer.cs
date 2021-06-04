@@ -120,14 +120,16 @@ namespace HTTP_Web_Server
                 catch(IndexOutOfRangeException e)
                 {
                     isHacking = true;
-                    nme = "Hacklog.txt";
-                    log(LOG_DIR + FileName, e + "Someone is trying to hack the server or trying to use nikto");
-                    Console.WriteLine("Someone is trying to hack the server or trying to use nikto");
+                    log(LOG_DIR +"Server was hacked or Index  outofbounds Exeption", e + "S002:Someone is trying to hack the server or trying to use nikto");;
+                    Console.WriteLine("S002:Someone is trying to hack the server or trying to use nikto");
+                    Console.WriteLine("Server is stopping because of security reasons.Refer Errors.txt");
+                    Process.Start("notepad.exe", "Errors.txt");
+
                     Task.Factory.StartNew(() =>
                     {
-                        log(LOG_DIR + FileName, e + "Someone is trying to hack the server or trying to use nikto");
+
                         System.Threading.Thread.Sleep(8000);
-                        //stop();
+                        stop();
                     });
                 }
                 
