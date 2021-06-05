@@ -22,9 +22,12 @@ namespace HTTP_Web_Server
         public static string SET_WEB_DIR;
         public static string SET_MSG_DIR;
         public static string SET_LOG_DIR;
+        private static IPAddress IPA;
         public static bool Lbool;
 
         private int Port;
+        public static int EPort;
+        public static bool CanFWD;
         public static System.Timers.Timer timer;
         private bool isRunning = false;
         public static string time;
@@ -32,6 +35,7 @@ namespace HTTP_Web_Server
         public string msg;
         public static string nme = " Log.txt";
         public static bool isHacking = false;
+        //private static PortForward FWD;
 
         private TcpListener TL;
 
@@ -56,18 +60,35 @@ namespace HTTP_Web_Server
         public HTTPServer(int _port)
         {
             Port = _port;
-            TL = new TcpListener(IPAddress.Any, Port);
+            foreach(IPAddress IP in PortForward.ips)
+            {
+                if (IP.ToString().Contains("192.168.1"))
+                {
+                    TL = new TcpListener(IP, Port);
+                    Console.WriteLine("The server is listening to " + IP + ":" + Port);
+                }
+            }
+            
         }
 
         public void start()
         {
             Thread serverThread = new Thread(new ThreadStart(Run));
             serverThread.Start();
+            if (CanFWD)
+            {
+                PortForward.Makeport(Port, EPort);
+            }
+            else
+            {
+                Console.WriteLine("Port forwarding is disabled");
+            }
         }
 
-        public void stop()
+        public static void stop()
         {
             Environment.Exit(0);
+            PortForward.REMport(EPort);
         }
 
         private void Run()

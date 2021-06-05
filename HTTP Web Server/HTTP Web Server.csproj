@@ -47,6 +47,17 @@ Now you can specify the directory in which the logs save</PackageReleaseNotes>
   </ItemGroup>
 
   <ItemGroup>
+    <COMReference Include="NATUPNPLib.dll">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>1c565858-f302-471e-b409-f180aa4abec6</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Root\msg\400.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -89,7 +100,7 @@ Now you can specify the directory in which the logs save</PackageReleaseNotes>
   
 
   <ItemGroup>
-    <None Update="Errors.txt">
+    <None Update="Docs\Errors.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Settings.ini">

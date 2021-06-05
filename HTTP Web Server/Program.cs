@@ -1,30 +1,43 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HTTP_Web_Server
 {
     class Program
     {
         
-        public int PT = 30;
 
 
         static void Main(string[] args)
         {
             string Set = "Settings.ini"; // Settings file
 
+            Random rnd = new Random();
+            string SPT = File.ReadLines(Environment.CurrentDirectory + "/Docs/Fun.txt").Skip(rnd.Next(0, 18)).Take(1).First();
             HTTPServer.SetTimer();
-            int PT = 30;
-            string line = File.ReadLines(Set).Skip(5).Take(1).First();
-            string dir = File.ReadLines(Set).Skip(8).Take(1).First();
-            string msgdir = File.ReadLines(Set).Skip(11).Take(1).First();
-            string logdir = File.ReadLines(Set).Skip(14).Take(1).First();
-            string Logbool = File.ReadLines(Set).Skip(17).Take(1).First();
+            int EPT;
+            bool CanPF;
+            string line = File.ReadLines(Set).Skip(7).Take(1).First();
+            string dir = File.ReadLines(Set).Skip(10).Take(1).First();
+            string msgdir = File.ReadLines(Set).Skip(13).Take(1).First();
+            string logdir = File.ReadLines(Set).Skip(16).Take(1).First();
+            string Logbool = File.ReadLines(Set).Skip(19).Take(1).First();
+            string ELine = File.ReadLines(Set).Skip(25).Take(1).First();
+            string Pbool = File.ReadLines(Set).Skip(22).Take(1).First();
+ 
+
             bool logbool = bool.Parse(Logbool);
+            bool UPNPF = bool.Parse(Pbool);
+            int PT = int.Parse(line);
             HTTPServer.Lbool = logbool;
 
+            
+
             Console.WriteLine("press ESC key to stop the server");
+
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
 
             if (dir == "") // To set directory of webpages
             {
@@ -74,6 +87,26 @@ namespace HTTP_Web_Server
 
             HTTPServer server = new HTTPServer(PT);
 
+            if (UPNPF)
+            {
+                if (ELine == "" || ELine == "0")
+                {
+                    Console.WriteLine("External port is not specified in Settings.ini file or you are trying to port forward to 0");
+                    CanPF = false;
+                }
+                else
+                {
+                    CanPF = true;
+                    EPT = int.Parse(ELine);
+                    HTTPServer.EPort = EPT;
+                    HTTPServer.CanFWD = CanPF;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Port forwarding is disabled. You have to manually port forward");
+            }
+
             if (line == "" || line == "0" ) // To stop server from listening to 0
             {
                 Console.WriteLine("Port is not specified or you are using reserved port 0. Specify a port in which the server should listen in Settings.ini file");
@@ -85,13 +118,28 @@ namespace HTTP_Web_Server
                 Console.WriteLine("$ Server started on port :" + PT);
             }
 
-            if(Console.ReadKey().Key == ConsoleKey.Escape)
+            
+
+            if(Console.ReadKey().Key == ConsoleKey.Escape || Environment.HasShutdownStarted)
             {
                 Console.WriteLine("Stopping server");
-                server.stop();
+                HTTPServer.stop();
                 Console.WriteLine("Server stopped");
             }
 
+            if(Console.ReadKey().Key == ConsoleKey.Enter)
+            {
+                PortForward.REMport(90);
+                PortForward.Makeport(90, 90);
+                Console.WriteLine("Request sussceded");
+            }
+
+        }
+
+        private static void OnProcessExit(object sender, EventArgs e)
+        {
+            HTTPServer.stop();
+            Console.WriteLine("Server stopped");
         }
     }
 }
