@@ -23,8 +23,11 @@ namespace HTTP_Web_Server
         public static string SET_MSG_DIR;
         public static string SET_LOG_DIR;
         public static bool Lbool;
+        public static string IPA;
 
         private int Port;
+        public static int EPort;
+        public static bool CanFWD;
         public static System.Timers.Timer timer;
         private bool isRunning = false;
         public static string time;
@@ -32,6 +35,7 @@ namespace HTTP_Web_Server
         public string msg;
         public static string nme = " Log.txt";
         public static bool isHacking = false;
+        //private static PortForward FWD;
 
         private TcpListener TL;
 
@@ -63,11 +67,20 @@ namespace HTTP_Web_Server
         {
             Thread serverThread = new Thread(new ThreadStart(Run));
             serverThread.Start();
+            if (CanFWD)
+            {
+                PortForward.Makeport(Port, EPort);
+            }
+            else
+            {
+                Console.WriteLine("Port forwarding is disabled");
+            }
         }
 
         public void stop()
         {
             Environment.Exit(0);
+            PortForward.REMport(EPort);
         }
 
         private void Run()
