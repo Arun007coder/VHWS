@@ -17,17 +17,12 @@ namespace HTTP_Web_Server
             Random rnd = new Random();
             string SPT = File.ReadLines(Environment.CurrentDirectory + "/Docs/Fun.txt").Skip(rnd.Next(0, 18)).Take(1).First();
             HTTPServer.SetTimer();
-            int EPT;
-            bool CanPF;
-            string line = File.ReadLines(Set).Skip(7).Take(1).First();
-            string dir = File.ReadLines(Set).Skip(10).Take(1).First();
-            string msgdir = File.ReadLines(Set).Skip(13).Take(1).First();
-            string logdir = File.ReadLines(Set).Skip(16).Take(1).First();
-            string Logbool = File.ReadLines(Set).Skip(19).Take(1).First();
-            string ELine = File.ReadLines(Set).Skip(25).Take(1).First();
-            string Pbool = File.ReadLines(Set).Skip(22).Take(1).First();
- 
-
+            int PT = 30;
+            string line = File.ReadLines(Set).Skip(5).Take(1).First();
+            string dir = File.ReadLines(Set).Skip(8).Take(1).First();
+            string msgdir = File.ReadLines(Set).Skip(11).Take(1).First();
+            string logdir = File.ReadLines(Set).Skip(14).Take(1).First();
+            string Logbool = File.ReadLines(Set).Skip(17).Take(1).First();
             bool logbool = bool.Parse(Logbool);
             bool UPNPF = bool.Parse(Pbool);
             int PT = int.Parse(line);
@@ -118,9 +113,7 @@ namespace HTTP_Web_Server
                 Console.WriteLine("$ Server started on port :" + PT);
             }
 
-            
-
-            if(Console.ReadKey().Key == ConsoleKey.Escape || Environment.HasShutdownStarted)
+            if(Console.ReadKey().Key == ConsoleKey.Escape)
             {
                 Console.WriteLine("Stopping server");
                 HTTPServer.stop();

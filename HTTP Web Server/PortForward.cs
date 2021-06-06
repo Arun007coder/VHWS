@@ -27,20 +27,8 @@ namespace HTTP_Web_Server
             PRT = _Iport;
             EPRT = _Eport;
 
-            //if (IIPPort.Contains("192.168.1"))
-            //{
-            //IIPS = IIPPort;
-            //Console.WriteLine(IIPS + " " + IIPPort);
-            //}
-
-            foreach (var ip in IIP)
-            {
-                if (ip.ToString().Contains("192.168.1."))
                 {
-                    Console.WriteLine(ip);
-                    IIPS = ip.ToString();
                 }
-            }
 
 
             if (UPNP == null)
@@ -65,18 +53,14 @@ namespace HTTP_Web_Server
                 Ismapempty = false;
             }
 
-            if (Ismapempty)
-            { 
-                map.Add(_Eport, "TCP", _Iport, IIPS, true, SNAME);
+            {
                 Console.WriteLine("The local port " + _Iport + " is being port forwarded to " + _Eport + " from internal ip " + IIPS + ". Use canyouseeme.org to find the port is forwarded");
             }
             else
             {
-                map.Remove(_Eport, "TCP");
-                map.Add(_Eport, "TCP", _Iport, IIPS, true, SNAME);
-                Ismapempty = true;
-                Console.WriteLine("The local port " + _Iport + " is being port forwarded to " + _Eport + " from internal ip " + IIPS + ". Use canyouseeme.org to find the port is forwarded");
             }
+
+            
 
 
         }
