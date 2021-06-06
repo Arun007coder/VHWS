@@ -24,6 +24,7 @@ namespace HTTP_Web_Server
         public static string SET_LOG_DIR;
         private static IPAddress IPA;
         public static bool Lbool;
+        public static string IPA;
 
         private int Port;
         public static int EPort;
