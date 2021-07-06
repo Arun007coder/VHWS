@@ -28,6 +28,9 @@ namespace HTTP_Web_Server
         public static string CMD1;
         public static string CMD2;
         public static string CMD3;
+        public static string CMD1_Output;
+        public static string CMD2_Output;
+        public static string CMD3_output;
 
         private int Port;
         public static int EPort;
@@ -201,19 +204,24 @@ namespace HTTP_Web_Server
                 {
 
                     Console.WriteLine("Command is " + CMD1);
-                    CMDREQ(CMD1);
+                    CMD1_Output =  CMDCOM("/c" + CMD1);
+                    Console.WriteLine(CMD1_Output);
                 }
 
                 if (GetLine(msg, 6).Contains("CMD2"))
                 {
                     Console.WriteLine("Command is " + CMD2);
-                    CMDREQ(CMD2);
+                    CMD2_Output = CMDCOM("/c" + CMD2);
+                    Console.WriteLine(CMD2_Output);
                 }
 
                 if (GetLine(msg, 6).Contains("CMD3"))
                 {
                     Console.WriteLine("Command is " + CMD3);
-                    CMDREQ(CMD3);
+                    CMD3_output =  CMDCOM("/c" + CMD3);
+                    Console.WriteLine(CMD3_output);
+
+                    
                 }
             }
             else
@@ -269,6 +277,21 @@ namespace HTTP_Web_Server
                 var line = process.StandardOutput.ReadLine();
                 Console.WriteLine(line);
             }
+        }
+
+        public string CMDCOM(string _cmdreq)
+        {
+            Process q = new Process();
+
+            q.StartInfo.UseShellExecute = false;
+            q.StartInfo.RedirectStandardOutput = true;
+            q.StartInfo.CreateNoWindow = true;
+            q.StartInfo.FileName = "C:\\Windows\\System32\\cmd.exe";
+            q.StartInfo.Arguments = _cmdreq;
+            q.Start();
+
+            return q.StandardOutput.ReadToEnd();
+            q.WaitForExit();
         }
 
     }
