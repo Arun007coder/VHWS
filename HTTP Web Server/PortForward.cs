@@ -2,7 +2,6 @@
 using NATUPNPLib;
 using System.Net;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace HTTP_Web_Server
 {
@@ -16,6 +15,7 @@ namespace HTTP_Web_Server
         private static  string[] IIP = ips.Select(ip => ip.ToString()).ToArray();
         private static string IIPS = "";
         private static int PRT;
+        private static string PROTOCOL = "TCP";
         private static int EPRT;
         static bool lol = true;
         public static string IIPPort = "";
@@ -27,8 +27,14 @@ namespace HTTP_Web_Server
             PRT = _Iport;
             EPRT = _Eport;
 
+            foreach(var ip in IIP)
+            {
+                if (ip.ToString().Contains("192.168.1"))
                 {
+                    IIPS = ip;
+                    Console.Beep();
                 }
+            }
 
 
             if (UPNP == null)
@@ -53,11 +59,18 @@ namespace HTTP_Web_Server
                 Ismapempty = false;
             }
 
+            if (Ismapempty)
             {
+                map.Add(EPRT, PROTOCOL, PRT, IIPS, true, SNAME);
                 Console.WriteLine("The local port " + _Iport + " is being port forwarded to " + _Eport + " from internal ip " + IIPS + ". Use canyouseeme.org to find the port is forwarded");
+                Console.Beep(2, 1);
             }
             else
             {
+                map.Remove(EPRT, PROTOCOL);
+                map.Add(EPRT, PROTOCOL, PRT, IIPS, true, SNAME);
+                Console.WriteLine("The local port " + _Iport + " is being port forwarded to " + _Eport + " from internal ip " + IIPS + ". Use canyouseeme.org to find the port is forwarded");
+                Console.Beep(4, 1);
             }
 
             

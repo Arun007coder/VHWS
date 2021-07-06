@@ -29,6 +29,9 @@ namespace HTTP_Web_Server
             string type = tokens[0];
             string url = tokens[1];
             string host = tokens[4];
+            Console.WriteLine( "HOST:" + host);
+            Console.WriteLine("TYPE:" + type);
+            Console.WriteLine("URL:" + url);
             return new Request(type, url, host);
 
 

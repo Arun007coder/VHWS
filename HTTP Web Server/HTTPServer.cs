@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Net.Sockets;
-using System.Net;
-using System.Threading;
-using System.Timers;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace HTTP_Web_Server
 {
@@ -24,7 +24,10 @@ namespace HTTP_Web_Server
         public static string SET_LOG_DIR;
         private static IPAddress IPA;
         public static bool Lbool;
-        public static string IPA;
+        public static bool CMDBool;
+        public static string CMD1;
+        public static string CMD2;
+        public static string CMD3;
 
         private int Port;
         public static int EPort;
@@ -43,7 +46,7 @@ namespace HTTP_Web_Server
 
         public static void SetTimer()
         {
-            // Create a timer with a two second interval.
+            // Create a timer with a 1 second interval.
             timer = new System.Timers.Timer(1000);
             timer.Enabled = true;
             // Hook up the Elapsed event for the timer. 
@@ -170,14 +173,55 @@ namespace HTTP_Web_Server
             while (reader.Peek() != -1)
             {
                 msg += reader.ReadLine() + "\n";
-                if(Lbool == true)
+                try
                 {
-                    log(LOG_DIR + FileName, msg);
+                    if(Lbool)
+                    {
+                        log(LOG_DIR + FileName, msg);
+                    }
+
                 }
+                catch(NullReferenceException e)
+                {
+                    Console.WriteLine("loging service has occured an error");
+                }
+                
             }
 
             Debug.WriteLine("$ Request: \n" + msg);
             Console.WriteLine("$ Request: \n" + msg);
+            string GetLine(string text, int lineNo)
+            {
+                string[] lines = text.Replace("\r", "").Split('\n');
+                return lines.Length >= lineNo ? lines[lineNo - 1] : null;
+            }
+            if (CMDBool)
+            {
+                if (GetLine(msg, 6).Contains("CMD1"))
+                {
+
+                    Console.WriteLine("Command is " + CMD1);
+                    CMDREQ(CMD1);
+                }
+
+                if (GetLine(msg, 6).Contains("CMD2"))
+                {
+                    Console.WriteLine("Command is " + CMD2);
+                    CMDREQ(CMD2);
+                }
+
+                if (GetLine(msg, 6).Contains("CMD3"))
+                {
+                    Console.WriteLine("Command is " + CMD3);
+                    CMDREQ(CMD3);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Someone is trying to access cmd");
+            }
+
+            
 
             Request req = Request.GetRequest(msg);
             Response resp = Response.From(req);
@@ -201,6 +245,34 @@ namespace HTTP_Web_Server
             }
         }
 
-        
+        public void CMDREQ(string _CMD)
+        {
+            string CMDCommands = _CMD;
+            string CMD = "CMD.exe";
+
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "C:\\Windows\\System32\\cmd.exe",
+                    Arguments = CMDCommands,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = false
+                }
+            };
+
+            process.Start();
+
+            while (!process.StandardOutput.EndOfStream)
+            {
+                var line = process.StandardOutput.ReadLine();
+                Console.WriteLine(line);
+            }
+        }
+
     }
+
+
+
 }
