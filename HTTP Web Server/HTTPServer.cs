@@ -39,7 +39,7 @@ namespace HTTP_Web_Server
         private bool isRunning = false;
         public static string time;
         public static string FileName;
-        public string msg;
+        public static string msg;
         public static string nme = " Log.txt";
         public static bool isHacking = false;
         //private static PortForward FWD;
@@ -94,8 +94,13 @@ namespace HTTP_Web_Server
 
         public static void stop()
         {
-            Environment.Exit(0);
+            Console.WriteLine("Server is stopping ...");
             PortForward.REMport(EPort);
+            log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", "null");
+            log(WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", "null");
+            log(WEB_DIR + @"\\CMDOUT\\CMD3_Output.txt", "null");
+            Environment.Exit(0);
+
         }
 
         private void Run()
@@ -200,31 +205,44 @@ namespace HTTP_Web_Server
             }
             if (CMDBool)
             {
-                if (GetLine(msg, 6).Contains("CMD1"))
+                if (msg.Contains("CMD1"))
                 {
 
                     Console.WriteLine("Command is " + CMD1);
-                    CMD1_Output =  CMDCOM("/c" + CMD1);
+                    CMD1_Output +=  CMDCOM("/c" + CMD1);
                     Console.WriteLine(CMD1_Output);
                     log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", CMD1_Output);
                 }
 
-                if (GetLine(msg, 6).Contains("CMD2"))
+                if (msg.Contains("CMD2"))
                 {
                     Console.WriteLine("Command is " + CMD2);
-                    CMD2_Output = CMDCOM("/c" + CMD2);
+                    CMD2_Output += CMDCOM("/c" + CMD2);
                     Console.WriteLine(CMD2_Output);
                     log( WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", CMD2_Output);
                 }
 
-                if (GetLine(msg, 6).Contains("CMD3"))
+                if (msg.Contains("CMD3"))
                 {
                     Console.WriteLine("Command is " + CMD3);
-                    CMD3_output =  CMDCOM("/c" + CMD3);
+                    CMD3_output +=  CMDCOM("/c" + CMD3);
                     Console.WriteLine(CMD3_output);
                     log(WEB_DIR + "\\CMDOUT\\CMD3_Output.txt", CMD3_output);
 
 
+                }
+
+                if (msg.Contains("EXT"))
+                {
+                    Console.WriteLine("Closing server ... ");
+                    stop();
+                }
+
+                if (msg.Contains("CLR"))
+                {
+                    log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", "null");
+                    log(WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", "null");
+                    log(WEB_DIR + @"\\CMDOUT\\CMD3_Output.txt", "null");
                 }
             }
             else
@@ -240,7 +258,7 @@ namespace HTTP_Web_Server
 
         }
 
-        public void log(string _file, string _res)
+        public static void log(string _file, string _res)
         {
             string dir = LOG_DIR;
             // If directory does not exist, create it

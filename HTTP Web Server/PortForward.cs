@@ -80,7 +80,8 @@ namespace HTTP_Web_Server
 
         public static void REMport(int _Eport)
         {
-            map.Remove(_Eport, "TCP");
+            if(HTTPServer.CanFWD)
+             map.Remove(_Eport, "TCP");
         }
 
     }

@@ -15,6 +15,8 @@ namespace HTTP_Web_Server
             string Set = "Settings.ini"; // Settings file
 
             
+
+            
             HTTPServer.SetTimer();
             string CMD_REQ_EN = File.ReadLines(Set).Skip(29).Take(1).First();
             string CMD_REQ_1 = ReadSET(Set, 32);

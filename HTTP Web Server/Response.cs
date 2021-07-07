@@ -32,7 +32,7 @@ namespace HTTP_Web_Server
                 return MakeNullRequest();
             }
 
-            if (request.Type == "CLS" || request.Type == "GET" || request.Type == "CMDA" || request.Type == "CMDB")
+            if (request.Type == "CUST" || request.Type == "GET" || request.Type == "CMDA" || request.Type == "CMDB")
             {
                 if (request.Type == "GET")
                 {
@@ -62,9 +62,9 @@ namespace HTTP_Web_Server
 
                 }
 
-                if (request.Type == "CLS")
+                if (request.Type == "CUST")
                 {
-                    return MakeClose();
+                    return MakeCustomres("Test");
                 }
             }
             else
@@ -91,17 +91,17 @@ namespace HTTP_Web_Server
             return new Response("200 ok", "text/html", d);
         }
 
-        public static Response MakeClose()
+        public static Response MakeCustomres(string _reqmsg)
         {
-            string file = HTTPServer.MSG_DIR + "Close.htm";
+            string file = HTTPServer.MSG_DIR + "404.htm";
             FileInfo FI = new FileInfo(file);
             FileStream FS = FI.OpenRead();
             BinaryReader BR = new BinaryReader(FS);
             Byte[] d = new Byte[FS.Length];
             BR.Read(d, 0, d.Length);
             FS.Close();
-            return new Response("200 ok", "text/html", d);
-            Console.WriteLine("Close request is surcessfully working");
+            return new Response("1089" + _reqmsg, "text/html", d);
+            Console.WriteLine("Custom request is surcessfully working");
 
         }
 
