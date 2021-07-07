@@ -12,7 +12,7 @@ namespace HTTP_Web_Server
     public class HTTPServer
     {
         public const string VERSION = "HTTP/1.1";
-        public const string NAME = "C# web server v2.0.2";
+        public const string NAME = "C# web server v3.0.0";
         public static string MSG_DIR;
         public static string WEB_DIR;
         public static string LOG_DIR;
@@ -205,7 +205,7 @@ namespace HTTP_Web_Server
             }
             if (CMDBool)
             {
-                if (msg.Contains("CMD1"))
+                if (GetLine(msg, 6).Contains("CMD1") || GetLine(msg, 7).Contains("CMD1"))
                 {
 
                     Console.WriteLine("Command is " + CMD1);
@@ -214,7 +214,7 @@ namespace HTTP_Web_Server
                     log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", CMD1_Output);
                 }
 
-                if (msg.Contains("CMD2"))
+                if (GetLine(msg, 6).Contains("CMD2") || GetLine(msg, 7).Contains("CMD2"))
                 {
                     Console.WriteLine("Command is " + CMD2);
                     CMD2_Output += CMDCOM("/c" + CMD2);
@@ -222,7 +222,7 @@ namespace HTTP_Web_Server
                     log( WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", CMD2_Output);
                 }
 
-                if (msg.Contains("CMD3"))
+                if (GetLine(msg, 6).Contains("CMD3") || GetLine(msg, 7).Contains("CMD3"))
                 {
                     Console.WriteLine("Command is " + CMD3);
                     CMD3_output +=  CMDCOM("/c" + CMD3);
@@ -232,17 +232,19 @@ namespace HTTP_Web_Server
 
                 }
 
-                if (msg.Contains("EXT"))
+                if (GetLine(msg , 6).Contains("EXT") || GetLine(msg , 7).Contains("EXT"))
                 {
                     Console.WriteLine("Closing server ... ");
                     stop();
+                    Environment.Exit(0);
                 }
 
-                if (msg.Contains("CLR"))
+                if (GetLine(msg, 6).Contains("CLR") || GetLine(msg, 7).Contains("CLR"))
                 {
                     log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", "null");
                     log(WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", "null");
                     log(WEB_DIR + @"\\CMDOUT\\CMD3_Output.txt", "null");
+                    Response.MakeCustomres("CMD Output cleared");
                 }
             }
             else

@@ -1,0 +1,13 @@
+﻿Requests.js : An API to Send http request header to the server. Usage = SendReq(req , ifr , lab);
+			 req : Which request header to send
+			 ifr : to use when req is [CMD1 , CMD2 , CMD3] To select the iframe which shows the command output
+			 lab : To show the request status in the "lab" id label
+
+Requests are : 
+	CMD1: To execute the command in 1st slot of commands
+	CMD2: To execute the command in 2nd slot of commands
+	CMD3: To execute the command in 3rd slot of commands
+	EXT : To stop the server
+	CLR1: To clear the command output of CMD1
+	CLR2: To clear the command output of CMD2
+	CLR3: To Clear the command output of CMD3

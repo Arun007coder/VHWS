@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>HTTP_Web_Server</RootNamespace>
-    <Version>2.0.1</Version>
+    <Version>3.0.0</Version>
     <Authors>Arun007coder</Authors>
     <Company>Null</Company>
     <Product>HTTP Server</Product>
@@ -100,6 +100,12 @@ Now you can specify the directory in which the logs save</PackageReleaseNotes>
   
 
   <ItemGroup>
+    <None Update="APIs\Requests.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Docs\APIs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Docs\Errors.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

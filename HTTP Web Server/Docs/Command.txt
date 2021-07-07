@@ -1,0 +1,7 @@
+﻿To select which commands execute:
+
+1.Turn on the command feature in the settings.ini 
+
+2. write the command which want to be executed in the desired slot. there are 3 slots for command execution
+
+3. Send a request header from the html page using the Request API. Refer to APIs.txt
