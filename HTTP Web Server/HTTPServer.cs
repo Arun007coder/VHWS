@@ -183,9 +183,16 @@ namespace HTTP_Web_Server
                 msg += reader.ReadLine() + "\n";
                 try
                 {
-                    if(Lbool)
+                    if (msg == " ")
                     {
-                        log(LOG_DIR + FileName, msg);
+                        if (Lbool)
+                        {
+                            log(LOG_DIR + FileName, msg);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("logging error");
                     }
 
                 }
@@ -203,54 +210,8 @@ namespace HTTP_Web_Server
                 string[] lines = text.Replace("\r", "").Split('\n');
                 return lines.Length >= lineNo ? lines[lineNo - 1] : null;
             }
-            if (CMDBool)
-            {
-                if (GetLine(msg, 6).Contains("CMD1") || GetLine(msg, 7).Contains("CMD1"))
-                {
 
-                    Console.WriteLine("Command is " + CMD1);
-                    CMD1_Output +=  CMDCOM("/c" + CMD1);
-                    Console.WriteLine(CMD1_Output);
-                    log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", CMD1_Output);
-                }
-
-                if (GetLine(msg, 6).Contains("CMD2") || GetLine(msg, 7).Contains("CMD2"))
-                {
-                    Console.WriteLine("Command is " + CMD2);
-                    CMD2_Output += CMDCOM("/c" + CMD2);
-                    Console.WriteLine(CMD2_Output);
-                    log( WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", CMD2_Output);
-                }
-
-                if (GetLine(msg, 6).Contains("CMD3") || GetLine(msg, 7).Contains("CMD3"))
-                {
-                    Console.WriteLine("Command is " + CMD3);
-                    CMD3_output +=  CMDCOM("/c" + CMD3);
-                    Console.WriteLine(CMD3_output);
-                    log(WEB_DIR + "\\CMDOUT\\CMD3_Output.txt", CMD3_output);
-
-
-                }
-
-                if (GetLine(msg , 6).Contains("EXT") || GetLine(msg , 7).Contains("EXT"))
-                {
-                    Console.WriteLine("Closing server ... ");
-                    stop();
-                    Environment.Exit(0);
-                }
-
-                if (GetLine(msg, 6).Contains("CLR") || GetLine(msg, 7).Contains("CLR"))
-                {
-                    log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", "null");
-                    log(WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", "null");
-                    log(WEB_DIR + @"\\CMDOUT\\CMD3_Output.txt", "null");
-                    Response.MakeCustomres("CMD Output cleared");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Someone is trying to access cmd");
-            }
+          
 
             
 
@@ -302,7 +263,7 @@ namespace HTTP_Web_Server
             }
         }
 
-        public string CMDCOM(string _cmdreq)
+        public static string CMDCOM(string _cmdreq)
         {
             Process q = new Process();
 
@@ -316,6 +277,64 @@ namespace HTTP_Web_Server
             return q.StandardOutput.ReadToEnd();
             q.WaitForExit();
         }
+
+        public static void CMD(int slot)
+        {
+            if(slot == 0)
+            {
+                Console.WriteLine("Command is " + CMD1);
+                CMD1_Output += CMDCOM("/c" + CMD1);
+                Console.WriteLine(CMD1_Output);
+                log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", CMD1_Output);
+            }
+
+            if(slot == 1)
+            {
+                Console.WriteLine("Command is " + CMD2);
+                CMD2_Output += CMDCOM("/c" + CMD2);
+                Console.WriteLine(CMD2_Output);
+                log(WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", CMD2_Output);
+            }
+
+            if(slot == 2)
+            {
+                Console.WriteLine("Command is " + CMD3);
+                CMD3_output += CMDCOM("/c" + CMD3);
+                Console.WriteLine(CMD3_output);
+                log(WEB_DIR + "\\CMDOUT\\CMD3_Output.txt", CMD3_output);
+            }
+        }
+
+        public static void CLR(int slot)
+        {
+            if(slot == 0)
+            {
+                log(WEB_DIR + @"\\CMDOUT\\CMD1_Output.txt", "null");
+            }
+
+            if(slot == 1)
+            {
+                log(WEB_DIR + @"\\CMDOUT\\CMD2_Output.txt", "null");
+            }
+
+            if(slot == 2)
+            {
+                log(WEB_DIR + @"\\CMDOUT\\CMD3_Output.txt", "null");
+            }
+
+            Console.WriteLine(slot + " cleared");
+
+        }
+
+        public static void EXT()
+        {
+            Console.WriteLine("Closing server ... ");
+            stop();
+            Environment.Exit(0);
+             
+        }
+
+        
 
     }
 

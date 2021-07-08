@@ -127,7 +127,7 @@ namespace HTTP_Web_Server
 
             Console.WriteLine("press ESC key to stop the server");
 
-            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
+            
 
             if (dir == "") // To set directory of webpages
             {
@@ -222,12 +222,6 @@ namespace HTTP_Web_Server
                 Console.WriteLine("Request sussceded");
             }
 
-        }
-
-        private static void OnProcessExit(object sender, EventArgs e)
-        {
-            HTTPServer.stop();
-            Console.WriteLine("Server stopped");
         }
 
         private static string ReadSET(string _File , int _skip)

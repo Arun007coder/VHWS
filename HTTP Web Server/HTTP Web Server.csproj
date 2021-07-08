@@ -28,18 +28,6 @@ Now you can specify the directory in which the logs save</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Root\NewFolder\**" />
-    <EmbeddedResource Remove="Root\NewFolder\**" />
-    <None Remove="Root\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Root\NewFolder\**" />
-    <EmbeddedResource Remove="Root\NewFolder\**" />
-    <None Remove="Root\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Root\msg\400.htm" />
     <None Remove="Root\msg\404.htm" />
     <None Remove="Root\msg\405.htm" />
@@ -107,6 +95,15 @@ Now you can specify the directory in which the logs save</PackageReleaseNotes>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Docs\Errors.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Root\web\CMDOUT\CMD1_Output.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Root\web\CMDOUT\CMD2_Output.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Root\web\CMDOUT\CMD3_Output.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Settings.ini">

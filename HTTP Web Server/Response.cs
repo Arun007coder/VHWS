@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HTTP_Web_Server
 {
@@ -32,7 +34,7 @@ namespace HTTP_Web_Server
                 return MakeNullRequest();
             }
 
-            if (request.Type == "CUST" || request.Type == "GET" || request.Type == "CMDA" || request.Type == "CMDB")
+            if (request.Type == "EXT" || request.Type == "GET" || request.Type == "CMD1" || request.Type == "CMD2" || request.Type == "CMD3" || request.Type == "CLR1" || request.Type == "CLR2" || request.Type == "CLR3")
             {
                 if (request.Type == "GET")
                 {
@@ -62,9 +64,59 @@ namespace HTTP_Web_Server
 
                 }
 
-                if (request.Type == "CUST")
+                if (HTTPServer.CMDBool) {
+
+                    if (request.Type == "CMD1")
+                    {
+                        HTTPServer.CMD(0);
+                        return MakeCustomres("CMD1");
+                    }
+
+                    if (request.Type == "CMD2")
+                    {
+                        HTTPServer.CMD(1);
+                        return MakeCustomres("CMD2");
+                    }
+
+                    if (request.Type == "CMD3")
+                    {
+                        HTTPServer.CMD(2);
+                        return MakeCustomres("CMD3");
+                    }
+
+                    if (request.Type == "CLR1")
+                    {
+                        HTTPServer.CLR(0);
+                        return MakeCustomres("CLR1");
+                    }
+
+                    if (request.Type == "CLR2")
+                    {
+                        HTTPServer.CLR(1);
+                        return MakeCustomres("CLR2");
+                    }
+
+                    if (request.Type == "CLR3")
+                    {
+                        HTTPServer.CLR(2);
+                        return MakeCustomres("CLR3");
+                    }
+
+                    if (request.Type == "EXT")
+                    {
+                        Task.Factory.StartNew(() =>
+                        {
+                            Thread.Sleep(3000);
+                            HTTPServer.stop();
+                            Environment.Exit(3);
+                        });
+                        return MakeCustomres("EXT");
+
+                    }
+                }
+                else
                 {
-                    return MakeCustomres("Test");
+                    Console.WriteLine("Someone is trying to use Commands without permission");
                 }
             }
             else
@@ -72,13 +124,6 @@ namespace HTTP_Web_Server
                 return MakeMethodNotAllowed();
             }
             return MakePageNotFound();
-
-
-
-
-
-
-
         }
 
         private static Response MakeFromFile(FileInfo f)
@@ -100,7 +145,7 @@ namespace HTTP_Web_Server
             Byte[] d = new Byte[FS.Length];
             BR.Read(d, 0, d.Length);
             FS.Close();
-            return new Response("1089" + _reqmsg, "text/html", d);
+            return new Response("1089" + " " + _reqmsg, "text/html", d);
             Console.WriteLine("Custom request is surcessfully working");
 
         }
