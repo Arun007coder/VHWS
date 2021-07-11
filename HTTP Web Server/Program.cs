@@ -29,6 +29,7 @@ namespace HTTP_Web_Server
             string Logbool = File.ReadLines(Set).Skip(20).Take(1).First();
             string Pbool = File.ReadLines(Set).Skip(23).Take(1).First();
             string ELine = File.ReadLines(Set).Skip(26).Take(1).First();
+            string cBool = File.ReadLines(Set).Skip(41).Take(1).First();
             bool CanPF;
             bool logbool = bool.Parse(Logbool);
             bool UPNPF = bool.Parse(Pbool);
@@ -39,6 +40,7 @@ namespace HTTP_Web_Server
             HTTPServer.CMD1 = CMD_REQ_1;
             HTTPServer.CMD2 = CMD_REQ_2;
             HTTPServer.CMD3 = CMD_REQ_3;
+            Response.isCMDED = bool.Parse(cBool);
 
 
             if (args.Length > 0)

@@ -15,6 +15,7 @@ namespace HTTP_Web_Server
         private Byte[] data = null;
         private string status;
         private string mime;
+        public static bool isCMDED;
 
         
 
@@ -34,7 +35,7 @@ namespace HTTP_Web_Server
                 return MakeNullRequest();
             }
 
-            if (request.Type == "EXT" || request.Type == "GET" || request.Type == "CMD1" || request.Type == "CMD2" || request.Type == "CMD3" || request.Type == "CLR1" || request.Type == "CLR2" || request.Type == "CLR3")
+            if (request.Type == "EXT" || request.Type == "GET" || request.Type == "CMD1" || request.Type == "CMD2" || request.Type == "CMD3" || request.Type == "CLR1" || request.Type == "CLR2" || request.Type == "CLR3" || request.Type == "CMDED1" || request.Type == "CMDED2" || request.Type == "CMDED3")
             {
                 if (request.Type == "GET")
                 {
@@ -65,6 +66,27 @@ namespace HTTP_Web_Server
                 }
 
                 if (HTTPServer.CMDBool) {
+
+                    if (isCMDED)
+                    {
+                        if (request.Type == "CMDED1")
+                        {
+                            string CMDED1 = "/c" + HTTPServer.CMDEDIN.Replace(":", " ");
+                            HTTPServer.CMDET(0, CMDED1);
+                        }
+
+                        if (request.Type == "CMDED2")
+                        {
+                            string CMDED2 = "/c" + HTTPServer.CMDEDIN.Replace(":", " ");
+                            HTTPServer.CMDET(1, CMDED2);
+                        }
+
+                        if (request.Type == "CMDED3")
+                        {
+                            string CMDED3 = "/c" + HTTPServer.CMDEDIN.Replace(":", " ");
+                            HTTPServer.CMDET(2, CMDED3);
+                        }
+                    }
 
                     if (request.Type == "CMD1")
                     {

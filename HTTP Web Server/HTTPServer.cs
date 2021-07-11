@@ -31,6 +31,7 @@ namespace HTTP_Web_Server
         public static string CMD1_Output;
         public static string CMD2_Output;
         public static string CMD3_output;
+        public static string CMDEDIN;
 
         private int Port;
         public static int EPort;
@@ -45,6 +46,8 @@ namespace HTTP_Web_Server
         //private static PortForward FWD;
 
         private TcpListener TL;
+
+        
 
 
         public static void SetTimer()
@@ -181,6 +184,14 @@ namespace HTTP_Web_Server
             while (reader.Peek() != -1)
             {
                 msg += reader.ReadLine() + "\n";
+                
+                static string GetLine(string txt ,  int lineNo)
+                {
+                    Console.WriteLine("debugreq : " + txt);
+                    string[] lines = txt.Replace("\r", "").Split('\n');
+                    return lines.Length >= lineNo ? lines[lineNo - 1] : null;
+                }
+                CMDEDIN = GetLine(msg , 6);
                 try
                 {
                     if (msg == " ")
@@ -205,21 +216,14 @@ namespace HTTP_Web_Server
 
             Debug.WriteLine("$ Request: \n" + msg);
             Console.WriteLine("$ Request: \n" + msg);
-            string GetLine(string text, int lineNo)
-            {
-                string[] lines = text.Replace("\r", "").Split('\n');
-                return lines.Length >= lineNo ? lines[lineNo - 1] : null;
-            }
-
-          
-
-            
-
             Request req = Request.GetRequest(msg);
             Response resp = Response.From(req);
             resp.Post(client.GetStream());
 
         }
+
+        
+
 
         public static void log(string _file, string _res)
         {
@@ -334,7 +338,26 @@ namespace HTTP_Web_Server
              
         }
 
+        public static void CMDET(int _slot ,  string _COMM)
+        {
+            if(_slot == 0)
+            {
+                CMD1 = _COMM;
+            }
+
+            if(_slot == 1)
+            {
+                CMD2 = _COMM;
+            }
+            if(_slot == 2)
+            {
+                CMD3 = _COMM;
+            }
+        }
+
         
+
+
 
     }
 
