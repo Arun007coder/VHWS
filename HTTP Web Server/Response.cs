@@ -71,21 +71,86 @@ namespace HTTP_Web_Server
                     {
                         if (request.Type == "CMDED1")
                         {
-                            string CMDED1 = "/c" + HTTPServer.CMDEDIN.Replace(":", " ");
-                            HTTPServer.CMDET(0, CMDED1);
+                            if (HTTPServer.CMDEDIN6.Contains("CMD1"))
+                            {
+                                string CMDED11 = CharRem(HTTPServer.CMDEDIN6).Replace("CMD1" , " ").Replace("slash", "/").Replace("andd" , "&&");
+                                Console.WriteLine("Command is " + CMDED11);
+                                HTTPServer.CMDET(0, CMDED11);
+                            }
+
+                            if (HTTPServer.CMDEDIN7.Contains("CMD1"))
+                            {
+                                string CMDED12 =CharRem(HTTPServer.CMDEDIN7).Replace("CMD1" , " ").Replace("slash", "/").Replace("andd", "&&");
+                                Console.WriteLine( "Command is " + CMDED12);
+                                HTTPServer.CMDET(0, CMDED12);
+                            }
+
+                            if (HTTPServer.CMDEDIN5.Contains("CMD1"))
+                            {
+                                string CMDED13 = CharRem(HTTPServer.CMDEDIN5).Replace("CMD1", " ").Replace("slash" , "/").Replace("andd", "&&");
+                                Console.WriteLine( "command is " + CMDED13);
+                                HTTPServer.CMDET(0, CMDED13);
+                            }
+
+                            return MakeCustomres("CMDED1");
                         }
 
                         if (request.Type == "CMDED2")
                         {
-                            string CMDED2 = "/c" + HTTPServer.CMDEDIN.Replace(":", " ");
-                            HTTPServer.CMDET(1, CMDED2);
+                            if (HTTPServer.CMDEDIN6.Contains("CMD2"))
+                            {
+                                string CMDED21 = CharRem(HTTPServer.CMDEDIN6).Replace("CMD2", " ").Replace("slash", "/").Replace("andd", "&&");
+                                Console.WriteLine("Command is " + CMDED21);
+                                HTTPServer.CMDET(1, CMDED21);
+                            }
+
+                            if (HTTPServer.CMDEDIN7.Contains("CMD2"))
+                            {
+                                string CMDED22 = CharRem(HTTPServer.CMDEDIN7).Replace("CMD2", " ").Replace("slash", "/").Replace("andd", "&&");
+                                Console.WriteLine("Command is " + CMDED22);
+                                HTTPServer.CMDET(1, CMDED22);
+                            }
+
+                            if (HTTPServer.CMDEDIN5.Contains("CMD2"))
+                            {
+                                string CMDED23 = CharRem(HTTPServer.CMDEDIN5).Replace("CMD2", " ").Replace("slash", "/").Replace("andd", "&&");
+                                Console.WriteLine("Command is " + CMDED23);
+                                HTTPServer.CMDET(1, CMDED23);
+                            }
+
+                            return MakeCustomres("CMDED2");
                         }
 
                         if (request.Type == "CMDED3")
                         {
-                            string CMDED3 = "/c" + HTTPServer.CMDEDIN.Replace(":", " ");
-                            HTTPServer.CMDET(2, CMDED3);
+                            if (HTTPServer.CMDEDIN6.Contains("CMD3"))
+                            {
+                                string CMDED31 = CharRem(HTTPServer.CMDEDIN6).Replace("CMD3" , string.Empty).Replace("slash", "/").Replace("andd", "&&");
+                                Console.WriteLine("Command is " + CMDED31);
+                                HTTPServer.CMDET(2, CMDED31);
+                            }
+
+                            if (HTTPServer.CMDEDIN7.Contains("CMD3"))
+                            {
+                                string CMDED32 = CharRem(HTTPServer.CMDEDIN7).Replace("CMD3", string.Empty).Replace("slash", "/").Replace("andd", "&&");
+                                Console.WriteLine("Command is " + CMDED32);
+                                HTTPServer.CMDET(2, CMDED32);
+                            }
+
+                            if (HTTPServer.CMDEDIN5.Contains("CMD3"))
+                            {
+                                string CMDED33 = CharRem(HTTPServer.CMDEDIN5).Replace("CMD3", string.Empty).Replace("slash", "/").Replace("andd", "&&");
+                                Console.WriteLine("Command is " + CMDED33);
+                                HTTPServer.CMDET(2, CMDED33);
+                            }
+
+                            return MakeCustomres("CMDED3");
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine("The client is trying to change the commands in slots");
+
                     }
 
                     if (request.Type == "CMD1")
@@ -146,6 +211,18 @@ namespace HTTP_Web_Server
                 return MakeMethodNotAllowed();
             }
             return MakePageNotFound();
+        }
+
+        private static string CharRem(string _char)
+        {
+            var str = _char;
+            var charsToRemove = new string[] { "@", ",", ".", ";", "'", ":" };
+            foreach (var c in charsToRemove)
+            {
+                str = str.Replace(c, string.Empty);
+            }
+
+            return str;
         }
 
         private static Response MakeFromFile(FileInfo f)

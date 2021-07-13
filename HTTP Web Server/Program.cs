@@ -58,7 +58,18 @@ namespace HTTP_Web_Server
                     Console.WriteLine("-s <Iport> <WEBDir> <ERRDir> <PRTFWD> <Eport> :To start the server with user configuration. Args <Iport>:Internal port <WEBDir>:The Directory where web pages are stored <ERRDir>:The directory where Error pages are stored <PRTFWD>:true or false wheather to port forward or not <Eport>:External port if port forward is enabled ");
                 }
 
-                if(args[0] == "-sc")
+                if (cBool == "false")
+                {
+                    Console.WriteLine("CMDED enabled is " + Response.isCMDED);
+                    Console.WriteLine("CMDED is disabled");
+                }
+                else
+                {
+                    Console.WriteLine("CMDED enabled is " + Response.isCMDED);
+                    Console.WriteLine("CMDED is enabled");
+                }
+
+                if (args[0] == "-sc")
                 {
                     if (dir == "") // To set directory of webpages
                     {
@@ -105,6 +116,8 @@ namespace HTTP_Web_Server
                     {
                         Console.WriteLine("Logging is enabled");
                     }
+
+                    
 
                     HTTPServer serve = new HTTPServer(PT);
 
