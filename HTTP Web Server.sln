@@ -8,16 +8,31 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Linux_Release|Any CPU = Linux_Release|Any CPU
+		Linux_Release|x64 = Linux_Release|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		X64 Release|Any CPU = X64 Release|Any CPU
+		X64 Release|x64 = X64 Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Debug|x64.ActiveCfg = Debug|x64
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Debug|x64.Build.0 = Debug|x64
 		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Linux_Release|Any CPU.ActiveCfg = Linux_Release|Any CPU
 		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Linux_Release|Any CPU.Build.0 = Linux_Release|Any CPU
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Linux_Release|x64.ActiveCfg = Linux_Release|x64
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Linux_Release|x64.Build.0 = Linux_Release|x64
 		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Release|x64.ActiveCfg = Release|x64
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.Release|x64.Build.0 = Release|x64
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.X64 Release|Any CPU.ActiveCfg = X64 Release|Any CPU
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.X64 Release|Any CPU.Build.0 = X64 Release|Any CPU
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.X64 Release|x64.ActiveCfg = X64 Release|x64
+		{54435603-DBB4-11D2-8724-00A0C9A8B90C}.X64 Release|x64.Build.0 = X64 Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

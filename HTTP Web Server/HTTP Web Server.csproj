@@ -7,13 +7,15 @@
     <Version>3.0.0</Version>
     <Authors>Arun007coder</Authors>
     <Company>Null</Company>
-    <Product>HTTP Server</Product>
+    <Product>VHWS</Product>
     <Description>A simple web server made using c#</Description>
-    <PackageReleaseNotes>*Added log folder value in Settings.ini
-Now you can specify the directory in which the logs save</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <SignAssembly>false</SignAssembly>
-    <Configurations>Debug;Release;Linux_Release</Configurations>
+    <Configurations>Debug;Release;Linux_Release;X64 Release</Configurations>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64</Platforms>
+    <AssemblyName>VHWS</AssemblyName>
+    <PackageIcon>Icon.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,16 +24,38 @@ Now you can specify the directory in which the logs save</PackageReleaseNotes>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Optimize>false</Optimize>
+    <DocumentationFile>C:\Users\ADG Arun\source\repos\HTTP Web Server\HTTP Web Server\HTTP Web Server.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	
     <DocumentationFile></DocumentationFile>
     <OutputPath>H:\HTTP Web Server\</OutputPath>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DocumentationFile />
+    <OutputPath>H:\HTTP Web Server\</OutputPath>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='X64 Release|x64'">
+		<RuntimeIdentifiers>win10-x64;linux-x64</RuntimeIdentifiers>
+		<OutputPath>H:\HTTP Web Server\linux\</OutputPath>
+		<Optimize>true</Optimize>
+	</PropertyGroup>
 
   <ItemGroup>
     <None Remove="Root\msg\400.htm" />
     <None Remove="Root\msg\404.htm" />
     <None Remove="Root\msg\405.htm" />
     <None Remove="Root\web\Add your Website Files here.txt" />
+    <None Include="Icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

@@ -31,7 +31,9 @@ namespace HTTP_Web_Server
         public static string CMD1_Output;
         public static string CMD2_Output;
         public static string CMD3_output;
-        public static string CMDEDIN;
+        public static string CMDEDIN6;
+        public static string CMDEDIN7;
+        public static string CMDEDIN5;
 
         private int Port;
         public static int EPort;
@@ -104,6 +106,13 @@ namespace HTTP_Web_Server
             log(WEB_DIR + @"\\CMDOUT\\CMD3_Output.txt", "null");
             Environment.Exit(0);
 
+        }
+
+        public static string GetLine(string txt, int lineNo)
+        {
+            //Console.WriteLine("debugreq : " + txt);
+            string[] lines = txt.Replace("\r", "").Split('\n');
+            return lines.Length >= lineNo ? lines[lineNo - 1] : null;
         }
 
         private void Run()
@@ -184,14 +193,13 @@ namespace HTTP_Web_Server
             while (reader.Peek() != -1)
             {
                 msg += reader.ReadLine() + "\n";
+                string l = msg;
+                //Console.WriteLine(l);
                 
-                static string GetLine(string txt ,  int lineNo)
-                {
-                    Console.WriteLine("debugreq : " + txt);
-                    string[] lines = txt.Replace("\r", "").Split('\n');
-                    return lines.Length >= lineNo ? lines[lineNo - 1] : null;
-                }
-                CMDEDIN = GetLine(msg , 6);
+                CMDEDIN6 = GetLine(l, 5);
+                CMDEDIN7 = GetLine(l, 6);
+                CMDEDIN5 = GetLine(l, 4);
+                log(LOG_DIR + "Debug Log.txt", CMDEDIN5 + "/n" + CMDEDIN6 + "/n" + CMDEDIN7);
                 try
                 {
                     if (msg == " ")
