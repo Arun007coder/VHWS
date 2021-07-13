@@ -45,7 +45,7 @@ namespace HTTP_Web_Server
 
             if (args.Length > 0)
             {
-                if (args[1] == "-h")
+                if (args[0] == "-h")
                 {
                     Console.WriteLine("C# HTTP Web Server " + HTTPServer.NAME);
                     Console.WriteLine("  ");
@@ -56,6 +56,7 @@ namespace HTTP_Web_Server
                     Console.WriteLine("-spf <EPort> :To start the server with port forwarding. Args <Eport>:External port");
                     Console.WriteLine("  ");
                     Console.WriteLine("-s <Iport> <WEBDir> <ERRDir> <PRTFWD> <Eport> :To start the server with user configuration. Args <Iport>:Internal port <WEBDir>:The Directory where web pages are stored <ERRDir>:The directory where Error pages are stored <PRTFWD>:true or false wheather to port forward or not <Eport>:External port if port forward is enabled ");
+                    Environment.Exit(0);
                 }
 
                 if (cBool == "false")
