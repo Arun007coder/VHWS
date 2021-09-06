@@ -21,7 +21,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>false</Optimize>
     <DocumentationFile>C:\Users\ADG Arun\source\repos\HTTP Web Server\HTTP Web Server\HTTP Web Server.xml</DocumentationFile>
-	 <OutputPath>D:\</OutputPath> 
+	 <OutputPath>C:\PBuild\netcoreapp3.1\</OutputPath> 
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
