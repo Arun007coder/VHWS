@@ -84,11 +84,11 @@ jobs:
         Configuration: ${{ matrix.configuration }}
         
     - name: CheckDir
-      run: dir D:\netcoreapp3.1\
+      run: dir C:\PBuild\netcoreapp3.1\
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: MSIX Package
-        path: D:\netcoreapp3.1\
+        path: C:\PBuild\netcoreapp3.1\
