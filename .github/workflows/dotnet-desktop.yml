@@ -82,6 +82,9 @@ jobs:
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=Debug
       env:
         Configuration: ${{ matrix.configuration }}
+        
+    - name: CheckDir
+      run: dir D:\necoreapp3.1\
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-artifact
     - name: Upload build artifacts
